@@ -26,11 +26,12 @@ The template already has scripts to execute the project calling a specific envir
 
 ## Some images of the project
 
-Patient list               |  Patien detail 1           |Patien detail 2   
+Patient list               |  Patient detail 1          |Patient detail 2   
 :-------------------------:|:--------------------------:|:--------------------------:
 <img src="https://user-images.githubusercontent.com/61159123/148605219-fa301f78-de2d-4c2c-bd4e-eea24717789a.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" /> | <img src="https://user-images.githubusercontent.com/61159123/148605216-9fcab714-5f21-46f8-b71b-da274794da62.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" /> | <img src="https://user-images.githubusercontent.com/61159123/148605205-579822ee-d92e-4d28-bca4-65c87b8c5069.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" /> 
   
   
-  
+  <img width="1731" alt="Screen Shot 2022-01-07 at 17 53 37" src="https://user-images.githubusercontent.com/61159123/148605987-a864ca36-2107-440b-ba9b-e34b4201b609.png">
+
 
 
