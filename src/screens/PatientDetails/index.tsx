@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {TouchableOpacity, Text, View, ActivityIndicator} from 'react-native';
 import {useAppSelector} from '../../redux/stores/hooks';
 import CustomButton from '../../components/CustomButton';
 import {Avatar} from 'react-native-elements';
 
 //images
-const male = require('./images/male.png');
-const female = require('./images/female.png');
+import {MALE, FEMALE} from './images';
+
 import {
   getPatientDetails,
   postPatientForwarded,
@@ -18,8 +18,8 @@ import {
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/native';
 
-//styles
-import styles from './styles';
+//Styles
+import createStyles from './styles';
 import {Patient} from '../../DTOs/patientType';
 import {formatDate} from '../../utils';
 import Events from './components/Events';
@@ -41,9 +41,9 @@ const initial: Patient = {
 };
 
 const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
+  const styles = useMemo(() => createStyles(), []);
   const dispatch = useDispatch();
   const {details = initial, loading} = useAppSelector(state => state.patient);
-
   const {patienDetails} = route.params;
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
               <Avatar
                 size={64}
                 rounded
-                source={details?.gender === 'M' ? male : female}
+                source={details?.gender === 'M' ? MALE : FEMALE}
               />
               <Text style={styles.text}>Gender: {details?.gender}</Text>
             </View>

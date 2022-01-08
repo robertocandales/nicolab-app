@@ -1,17 +1,16 @@
 import React, {FC, useMemo} from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
-
-import {Patient} from '../../../../DTOs/patientType';
 import {useAppSelector} from '../../../../redux/stores/hooks';
 import {formatDate} from '../../../../utils';
 
+//types
+import {Patient} from '../../../../DTOs/patientType';
 //Styles
 import createStyles from './styles';
 
 //images
-const male = require('../../images/male.png');
-const female = require('../../images/female.png');
+import {MALE, FEMALE} from '../../images';
 
 interface IProps {
   item: Patient;
@@ -37,7 +36,7 @@ const Item: FC<IProps> = ({item, onPress}: IProps) => {
               <Avatar
                 size={64}
                 rounded
-                source={item.gender === 'M' ? male : female}
+                source={item.gender === 'M' ? MALE : FEMALE}
                 containerStyle={
                   item.gender === 'F' ? styles.avatarFemale : styles.avatarMale
                 }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {
   Text,
   SafeAreaView,
@@ -13,8 +13,8 @@ import {Patient} from '../../DTOs/patientType';
 import {getPatientListAction} from '../../redux/actions/patientActions';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
-//styles
-import styles from './styles';
+//Styles
+import createStyles from './styles';
 import {Theme} from '../../theme/themeProvider';
 import Item from './components/Item';
 
@@ -23,6 +23,7 @@ export type IindexProps = {
 };
 
 const PatientList: React.FC<IindexProps> = ({navigation}: IindexProps) => {
+  const styles = useMemo(() => createStyles(), []);
   const dispatch = useDispatch();
   const {patient, loading} = useAppSelector(state => state.patient);
 
