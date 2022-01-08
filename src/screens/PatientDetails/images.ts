@@ -1,4 +1,4 @@
-const MALE = require('./images/male.png');
-const FEMALE = require('./images/female.png');
+import MALE from './images/male.png';
+import FEMALE from './images/female.png';
 
 export {MALE, FEMALE};
