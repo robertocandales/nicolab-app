@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+//import Icon from 'react-native-vector-icons/FontAwesome';
 
 //styles
 import styles from './styles';
@@ -15,7 +15,7 @@ interface IProps {
 const CustomButton: React.FC<IProps> = ({
   label,
   onPress,
-  icon,
+  //  icon,
   customStyle = null,
   disabled = false,
 }: IProps) => {
