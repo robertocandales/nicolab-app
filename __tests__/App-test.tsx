@@ -13,7 +13,11 @@ describe('<App />', () => {
     component = render(<App />);
   });
 
-  it('Render ok', () => {
-    console.log(component);
+  it('Render correctly', () => {
+    expect(component).toBeDefined();
+    expect(component.getByTestId('patient-title')).toBeDefined();
+    expect(component.queryAllByTestId('patient-container-list').length).toEqual(
+      0,
+    );
   });
 });

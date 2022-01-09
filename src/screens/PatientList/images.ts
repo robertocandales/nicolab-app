@@ -1,5 +1,4 @@
-/// <reference types="react-scripts" />
-import MALE from './images/male.png';
-import FEMALE from './images/female.png';
+const MALE = require('./images/male.png');
+const FEMALE = require('./images/female.png');
 
 export {MALE, FEMALE};

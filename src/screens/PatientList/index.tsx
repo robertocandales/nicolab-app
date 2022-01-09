@@ -41,7 +41,9 @@ const PatientList: React.FC<IindexProps> = ({navigation}: IindexProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Patient List</Text>
+      <Text style={styles.title} testID="patient-title">
+        Patient List
+      </Text>
       {loading && (
         <View style={styles.indicator}>
           <ActivityIndicator size="large" color={Theme.colors.notification} />

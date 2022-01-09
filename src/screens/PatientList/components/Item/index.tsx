@@ -22,7 +22,7 @@ const Item: FC<IProps> = ({item, onPress}: IProps) => {
   const {loading} = useAppSelector(state => state.patient);
 
   return (
-    <View>
+    <View testID="patient-container-list">
       <TouchableOpacity
         disabled={loading}
         style={styles.button}
