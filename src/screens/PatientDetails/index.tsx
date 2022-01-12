@@ -43,7 +43,11 @@ const initial: Patient = {
 const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
   const styles = useMemo(() => createStyles(), []);
   const dispatch = useDispatch();
-  const {details = initial, loading} = useAppSelector(state => state.patient);
+  const {
+    details = initial,
+    loading,
+    error,
+  } = useAppSelector(state => state.patient);
   const {patienDetails} = route.params;
 
   useEffect(() => {
@@ -56,55 +60,62 @@ const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
 
   return (
     <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" style={styles.indicator} />
-      ) : (
-        <>
-          <TouchableOpacity onPress={navigation.goBack} style={styles.row}>
-            {/******** some issue with icons ********/}
-            {/*<Icon name="arrow-left" size={18} />*/}
-            {/*<Icon raised name="backArrow" color="#f50" />*/}
-            <Text style={styles.text}>Back</Text>
-          </TouchableOpacity>
-          <Text style={styles.title}>{details?.name}</Text>
-
-          <View style={styles.card}>
-            <Text style={styles.text}>Date of birth: {details?.birthDate}</Text>
-
-            <Text style={styles.text}>
-              Created: {formatDate(details.createdAt)}
-            </Text>
-            <Text style={styles.text}>
-              Updated: {formatDate(details.updatedAt)}
-            </Text>
-            <View style={styles.gender}>
-              <Avatar
-                size={64}
-                rounded
-                source={details?.gender === 'M' ? MALE : FEMALE}
-              />
-              <Text style={styles.text}>Gender: {details?.gender}</Text>
-            </View>
-            <>
-              <Events events={details.events} />
-            </>
-            <View style={styles.active}>
-              <CustomButton
-                icon={'plus'}
-                label="Forward a patient"
-                onPress={() => onPress(details)}
-                disabled={details?.isForwarded}
-              />
-
-              {details?.isForwarded && (
-                <Text style={styles.textNotification}>
-                  The patient has already been forwarded
-                </Text>
-              )}
-            </View>
-          </View>
-        </>
+      {loading && (
+        <View style={styles.indicator}>
+          <ActivityIndicator size="large" />
+        </View>
       )}
+      <>
+        <TouchableOpacity onPress={navigation.goBack} style={styles.row}>
+          {/******** some issue with icons ********/}
+          {/*<Icon name="arrow-left" size={18} />*/}
+          {/*<Icon raised name="backArrow" color="#f50" />*/}
+          <Text style={styles.text}>Back</Text>
+        </TouchableOpacity>
+        <Text style={styles.title}>{details?.name}</Text>
+
+        <View style={styles.card}>
+          <Text style={styles.text}>Date of birth: {details?.birthDate}</Text>
+
+          <Text style={styles.text}>
+            Created: {formatDate(details.createdAt)}
+          </Text>
+          <Text style={styles.text}>
+            Updated: {formatDate(details.updatedAt)}
+          </Text>
+          <View style={styles.gender}>
+            <Avatar
+              size={64}
+              rounded
+              source={details?.gender === 'M' ? MALE : FEMALE}
+            />
+            <Text style={styles.text}>Gender: {details?.gender}</Text>
+          </View>
+          <>
+            <Events events={details.events} />
+          </>
+          <View style={styles.active}>
+            <CustomButton
+              icon={'plus'}
+              label="Forward a patient"
+              onPress={() => onPress(details)}
+              disabled={details?.isForwarded || loading}
+            />
+
+            {details?.isForwarded && (
+              <Text style={styles.textNotification}>
+                The patient has already been forwarded
+              </Text>
+            )}
+
+            {error && (
+              <Text style={styles.textNotification}>
+                An error occurred trying to get the details, please try again
+              </Text>
+            )}
+          </View>
+        </View>
+      </>
     </View>
   );
 };

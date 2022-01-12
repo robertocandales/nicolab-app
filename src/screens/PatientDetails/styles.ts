@@ -65,6 +65,19 @@ const createStyles = () =>
       top: '50%',
       zIndex: 20,
     },
+    containerDescription: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: '50%',
+      position: 'absolute',
+    },
+    description: {
+      fontSize: 22,
+      textAlign: 'center',
+      marginBottom: 5,
+
+      borderBottomWidth: 1,
+    },
   });
 
 export default createStyles;
