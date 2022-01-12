@@ -14,6 +14,8 @@ export const FORWARD_LOADING = 'FORWARD_LOADING';
 export const FORWARD_SUCCESS = 'FORWARD_SUCCESS';
 export const FORWARD_FAIL = 'FORWARD_FAIL';
 
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';
 export interface PatienListLoading {
   type: typeof PATIENT_LIST_LOADING;
 }
@@ -52,6 +54,14 @@ export interface ForwardSuccess {
   type: typeof FORWARD_SUCCESS;
   payload: Patient | any;
 }
+
+export interface showModal {
+  type: typeof SHOW_MODAL;
+}
+export interface hideModal {
+  type: typeof HIDE_MODAL;
+}
+
 export type PatientListDispatchTypes =
   | PatienListLoading
   | PatientListFail
@@ -66,3 +76,5 @@ export type ForwardDispatchTypes =
   | ForwardLoading
   | ForwardFail
   | ForwardSuccess;
+
+export type ShowModalDispatchTypes = showModal | hideModal;

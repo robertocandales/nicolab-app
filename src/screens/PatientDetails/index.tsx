@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {TouchableOpacity, Text, View, ActivityIndicator} from 'react-native';
 import {useAppSelector} from '../../redux/stores/hooks';
 import CustomButton from '../../components/CustomButton';
@@ -25,6 +25,8 @@ import {formatDate} from '../../utils';
 import Events from './components/Events';
 import {useDispatch} from 'react-redux';
 import {Theme} from '../../config/theme/themeProvider';
+import CustomAlert from '../../components/Alert';
+import {showModalAction} from '../../redux/actions/modalAction';
 
 interface IProps {
   route: RouteProp<any, any> | any;
@@ -42,6 +44,7 @@ const initial: Patient = {
 };
 
 const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
+  //  const [modalVisible, setModalVisible] = useState(true);
   const styles = useMemo(() => createStyles(), []);
   const dispatch = useDispatch();
   const {
@@ -51,13 +54,19 @@ const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
   } = useAppSelector(state => state.patient);
   const {patienDetails} = route.params;
 
+  const onPress = (value: Patient) => {
+    dispatch(postPatientForwarded(value, navigation));
+  };
+
   useEffect(() => {
     dispatch(getPatientDetails(patienDetails.id));
   }, [patienDetails, dispatch]);
 
-  const onPress = (value: Patient) => {
-    dispatch(postPatientForwarded(value, navigation));
-  };
+  useEffect(() => {
+    if (error) {
+      dispatch(showModalAction());
+    }
+  }, [error, dispatch]);
 
   return (
     <View style={styles.container}>
@@ -101,19 +110,20 @@ const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
               onPress={() => onPress(details)}
               disabled={details?.isForwarded || loading}
             />
-
             {details?.isForwarded && (
               <Text style={styles.textNotification}>
                 The patient has already been forwarded
               </Text>
             )}
-
             {error && (
-              <Text style={styles.textNotification}>
-                An error occurred trying to get the details, please try again
-              </Text>
+              <>
+                <Text style={styles.textNotification}>
+                  An error occurred trying to send the info, please try again
+                </Text>
+              </>
             )}
           </View>
+          <CustomAlert text="An error occurred trying to send the info, please try again" />
         </View>
       </>
     </View>
