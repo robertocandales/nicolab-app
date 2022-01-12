@@ -12,7 +12,7 @@ import {
   PatientDispatchTypes,
   ForwardDispatchTypes,
 } from '../types';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 
 interface IinitialState {
   patient: Patient[];

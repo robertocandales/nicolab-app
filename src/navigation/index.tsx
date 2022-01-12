@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PatientList} from '../screens/PatientList';
 import PatientDetails from '../screens/PatientDetails';
-import {Theme} from '../theme/themeProvider';
+import {Theme} from '../config/theme/themeProvider';
 
 export type MainStackParamList = {
   PatientList: undefined;

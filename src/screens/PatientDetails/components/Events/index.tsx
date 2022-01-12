@@ -1,6 +1,6 @@
 import React, {FC, useMemo} from 'react';
 import {Text, View} from 'react-native';
-import {Event} from '../../../../DTOs/patientType';
+import {Event} from '../../../../config/DTOs/patientType';
 
 //Styles
 import createStyles from './styles';

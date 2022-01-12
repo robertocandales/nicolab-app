@@ -1,4 +1,4 @@
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 
 export const PATIENT_LIST_LOADING = 'PATIENT_LIST_LOADING';
 export const PATIENT_LIST_SUCCESS = 'PATIENT_LIST_SUCCESS';

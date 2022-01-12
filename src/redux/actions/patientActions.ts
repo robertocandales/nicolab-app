@@ -12,10 +12,10 @@ import {
   PatientDispatchTypes,
   ForwardDispatchTypes,
 } from '../types';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
-import PatientService from '../../services/deliveriesServices';
+import PatientService from '../../config/services/deliveriesServices';
 import {Dispatch} from 'redux';
 
 export const getPatientListAction =

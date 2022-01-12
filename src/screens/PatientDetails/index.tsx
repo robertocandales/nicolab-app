@@ -20,7 +20,7 @@ import {RouteProp} from '@react-navigation/native';
 
 //Styles
 import createStyles from './styles';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 import {formatDate} from '../../utils';
 import Events from './components/Events';
 import {useDispatch} from 'react-redux';

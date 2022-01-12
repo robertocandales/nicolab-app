@@ -1,4 +1,4 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
 declare global {
@@ -8,7 +8,7 @@ declare global {
 }
 
 // Import Reducers
-import { rootReducer } from '../reducers/rootReducer';
+import {rootReducer} from '../reducers/rootReducer';
 
 let composeEnhancers = compose;
 
@@ -19,6 +19,9 @@ if (__DEV__) {
 }
 
 export default function generateStore() {
-  const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+  const store = createStore(
+    rootReducer,
+    composeEnhancers(applyMiddleware(thunk)),
+  );
   return store;
 }

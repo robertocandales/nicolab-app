@@ -5,7 +5,7 @@ import {useAppSelector} from '../../../../redux/stores/hooks';
 import {formatDate} from '../../../../utils';
 
 //types
-import {Patient} from '../../../../DTOs/patientType';
+import {Patient} from '../../../../config/DTOs/patientType';
 //Styles
 import createStyles from './styles';
 

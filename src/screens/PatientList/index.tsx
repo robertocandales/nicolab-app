@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useAppSelector} from '../../redux/stores/hooks';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 import {getPatientListAction} from '../../redux/actions/patientActions';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
 //Styles
 import createStyles from './styles';
-import {Theme} from '../../theme/themeProvider';
+import {Theme} from '../../config/theme/themeProvider';
 import Item from './components/Item';
 
 export type IindexProps = {
