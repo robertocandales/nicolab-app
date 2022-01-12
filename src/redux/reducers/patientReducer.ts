@@ -12,18 +12,20 @@ import {
   PatientDispatchTypes,
   ForwardDispatchTypes,
 } from '../types';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 
 interface IinitialState {
   patient: Patient[];
   details: any;
   loading: boolean;
+  error: boolean;
 }
 
 const initialState: IinitialState = {
   patient: [],
   details: {},
   loading: false,
+  error: false,
 };
 const patientReducer = (
   state: IinitialState = initialState,
@@ -34,21 +36,19 @@ const patientReducer = (
 ): IinitialState => {
   switch (action.type) {
     case PATIENT_LIST_FAIL:
-      return {...state, loading: false};
+      return {...state, loading: false, error: true};
     case PATIENT_LIST_LOADING:
       return {...state, loading: true};
     case PATIENT_LIST_SUCCESS:
-      return {...state, loading: false, patient: action.payload};
-    case FORWARD_FAIL:
-      return {...state, loading: false};
+      return {...state, loading: false, patient: action.payload, error: false};
     case PATIENT_FAIL:
-      return {...state, loading: false};
+      return {...state, loading: false, error: true};
     case PATIENT_LOADING:
       return {...state, loading: true};
     case PATIENT_SUCCESS:
       return {...state, loading: false, details: action.payload};
     case FORWARD_FAIL:
-      return {...state, loading: false};
+      return {...state, loading: false, error: true};
     case FORWARD_LOADING:
       return {...state, loading: true};
     case FORWARD_SUCCESS:
@@ -58,6 +58,8 @@ const patientReducer = (
         patient: state.patient.map(item =>
           item.id === action.payload.id ? {...item, isForwarded: true} : item,
         ),
+        details: {...state.details, isForwarded: true},
+        error: false,
       };
     default:
       return state;

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Theme} from '../../theme/themeProvider';
+import {Theme} from '../../config/theme/themeProvider';
 
 const createStyles = () =>
   StyleSheet.create({
@@ -64,6 +64,19 @@ const createStyles = () =>
       position: 'absolute',
       top: '50%',
       zIndex: 20,
+    },
+    containerDescription: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: '50%',
+      position: 'absolute',
+    },
+    description: {
+      fontSize: 22,
+      textAlign: 'center',
+      marginBottom: 5,
+
+      borderBottomWidth: 1,
     },
   });
 

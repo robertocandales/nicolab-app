@@ -9,14 +9,15 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useAppSelector} from '../../redux/stores/hooks';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 import {getPatientListAction} from '../../redux/actions/patientActions';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
 //Styles
 import createStyles from './styles';
-import {Theme} from '../../theme/themeProvider';
+import {Theme} from '../../config/theme/themeProvider';
 import Item from './components/Item';
+import CustomButton from '../../components/CustomButton';
 
 export type IindexProps = {
   navigation: NavigationProp<ParamListBase>;
@@ -25,7 +26,7 @@ export type IindexProps = {
 const PatientList: React.FC<IindexProps> = ({navigation}: IindexProps) => {
   const styles = useMemo(() => createStyles(), []);
   const dispatch = useDispatch();
-  const {patient, loading} = useAppSelector(state => state.patient);
+  const {patient, loading, error} = useAppSelector(state => state.patient);
 
   useEffect(() => {
     dispatch(getPatientListAction());
@@ -34,10 +35,28 @@ const PatientList: React.FC<IindexProps> = ({navigation}: IindexProps) => {
   const choosePatient = (value: Patient) => {
     navigation.navigate('PatientDetails', {patienDetails: value});
   };
-
+  const onPress = () => {
+    dispatch(getPatientListAction());
+  };
   const renderItem = ({item}: ListRenderItemInfo<Patient>) => {
     return <Item key={item.id} item={item} onPress={choosePatient} />;
   };
+
+  if (error) {
+    return (
+      <View style={styles.containerDescription}>
+        <Text style={styles.description} testID="patient-title">
+          An error occurred trying to get the information
+        </Text>
+        <CustomButton
+          icon={'plus'}
+          label="try again"
+          onPress={onPress}
+          disabled={loading}
+        />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,12 +68,19 @@ const PatientList: React.FC<IindexProps> = ({navigation}: IindexProps) => {
           <ActivityIndicator size="large" color={Theme.colors.notification} />
         </View>
       )}
-
-      <FlatList
-        data={patient}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      {patient.length ? (
+        <FlatList
+          data={patient}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      ) : (
+        <View style={styles.containerDescription}>
+          <Text style={styles.description} testID="patient-title">
+            There is no patient
+          </Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 };

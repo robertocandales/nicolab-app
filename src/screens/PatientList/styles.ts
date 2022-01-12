@@ -19,6 +19,18 @@ const createStyles = () =>
 
       borderBottomWidth: 1,
     },
+    containerDescription: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
+    },
+    description: {
+      fontSize: 22,
+      textAlign: 'center',
+      marginBottom: 5,
+
+      borderBottomWidth: 1,
+    },
   });
 
 export default createStyles;

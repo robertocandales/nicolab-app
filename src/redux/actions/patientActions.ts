@@ -12,10 +12,10 @@ import {
   PatientDispatchTypes,
   ForwardDispatchTypes,
 } from '../types';
-import {Patient} from '../../DTOs/patientType';
+import {Patient} from '../../config/DTOs/patientType';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
 
-import PatientService from '../../services/deliveriesServices';
+import PatientService from '../../config/services/patientServices';
 import {Dispatch} from 'redux';
 
 export const getPatientListAction =
@@ -56,6 +56,7 @@ export const getPatientDetails =
     }
   };
 
+/********* use navigation in case you want to route to another screen  *******/
 export const postPatientForwarded =
   (value: Patient, navigation: NavigationProp<ParamListBase>) =>
   async (dispatch: Dispatch<ForwardDispatchTypes>) => {
@@ -70,7 +71,7 @@ export const postPatientForwarded =
         type: FORWARD_SUCCESS,
         payload: resPostRequest,
       });
-      navigation.navigate('PatientList');
+      //  navigation.navigate('PatientList');
     } catch (e) {
       dispatch({
         type: FORWARD_FAIL,
