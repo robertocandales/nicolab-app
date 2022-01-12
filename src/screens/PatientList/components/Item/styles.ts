@@ -49,6 +49,7 @@ const createStyles = () =>
       borderBottomWidth: 1,
       width: '80%',
       marginBottom: 10,
+      flexDirection: 'row',
     },
     forwardedFlex: {
       alignItems: 'center',
@@ -90,6 +91,10 @@ const createStyles = () =>
     },
     avatarFemale: {
       backgroundColor: Theme.colors.background,
+    },
+    icon: {
+      color: Theme.colors.primary,
+      marginLeft: 5,
     },
   });
 

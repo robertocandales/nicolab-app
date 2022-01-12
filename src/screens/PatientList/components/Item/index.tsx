@@ -11,6 +11,8 @@ import createStyles from './styles';
 
 //images
 import {MALE, FEMALE} from '../../images';
+import {Theme} from '../../../../config/theme/themeProvider';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface IProps {
   item: Patient;
@@ -30,6 +32,12 @@ const Item: FC<IProps> = ({item, onPress}: IProps) => {
         <View style={styles.card}>
           <View style={styles.textNameContainer}>
             <Text style={styles.text}>{item.name}</Text>
+            <Icon
+              name="heart"
+              size={20}
+              style={styles.icon}
+              color={Theme.colors.primary}
+            />
           </View>
           <View style={styles.container}>
             <View style={styles.item1}>

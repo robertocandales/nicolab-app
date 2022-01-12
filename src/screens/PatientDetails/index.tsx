@@ -12,7 +12,7 @@ import {
   postPatientForwarded,
 } from '../../redux/actions/patientActions';
 
-//import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 //types
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
@@ -24,6 +24,7 @@ import {Patient} from '../../config/DTOs/patientType';
 import {formatDate} from '../../utils';
 import Events from './components/Events';
 import {useDispatch} from 'react-redux';
+import {Theme} from '../../config/theme/themeProvider';
 
 interface IProps {
   route: RouteProp<any, any> | any;
@@ -67,9 +68,8 @@ const PatientDetails: React.FC<IProps> = ({route, navigation}: IProps) => {
       )}
       <>
         <TouchableOpacity onPress={navigation.goBack} style={styles.row}>
-          {/******** some issue with icons ********/}
-          {/*<Icon name="arrow-left" size={18} />*/}
-          {/*<Icon raised name="backArrow" color="#f50" />*/}
+          <Icon name="arrow-left" size={30} color={Theme.colors.primary} />
+
           <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
         <Text style={styles.title}>{details?.name}</Text>
