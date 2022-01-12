@@ -40,6 +40,7 @@ const patientReducer = (
     case PATIENT_LIST_SUCCESS:
       return {...state, loading: false, patient: action.payload};
     case FORWARD_FAIL:
+      return {...state, loading: false};
     case PATIENT_FAIL:
       return {...state, loading: false};
     case PATIENT_LOADING:
